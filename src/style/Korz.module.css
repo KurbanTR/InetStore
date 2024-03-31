@@ -25,6 +25,7 @@
 .cart_image {
     width: 20%;
     position: relative;
+    left: 1em;
 }
 .cart_big_div {
     width: 85%;
@@ -68,6 +69,8 @@
     }
     .cart_image{
         width: 80%;
+        position: relative;
+        left: 0;
     }
 }
 @media screen and (max-width: 300px){

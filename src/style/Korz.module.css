@@ -50,6 +50,16 @@
     font-size: 15px;
     font-weight: 200;
 }
+.error{
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.error_p{
+    font-size: 100px;
+    color: rgba(0, 0, 0, 0.178);
+}
 @media screen and (max-width: 650px) and (min-width: 301px) {
     .cart_center_desc{
         display: none;

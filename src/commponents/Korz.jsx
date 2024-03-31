@@ -9,7 +9,7 @@ const Korz = () => {
     <div className={s.cart_div}>
     <div className={s.cart_div_canter}>
        <div className={s.cart_center_div}>
-         {cart.map((item, index) => (
+         {cart.length !== 0 ? cart.map((item, index) => (
             <div className={s.cart_big_div} key={index}>
               <div className={s.cart_image_div}>
                 <img className={s.cart_image} src={item.image} />
@@ -19,8 +19,12 @@ const Korz = () => {
                 </div>
                
               </div>
+            </div> 
+          )):
+            <div className={s.error}>
+              <p className={s.error_p}>Здесь пусто</p>
             </div>
-          ))}
+          }
        </div>
     </div>
   </div>

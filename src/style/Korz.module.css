@@ -51,16 +51,22 @@
     font-weight: 200;
 }
 .error{
-    height: 50vh;
+    height: 55vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .error_p{
-    font-size: 100px;
+    font-size: 125px;
     color: rgba(0, 0, 0, 0.178);
 }
 @media screen and (max-width: 650px) and (min-width: 301px) {
+    .error{
+        height: 30vh;
+    }
+    .error_p{
+        font-size: 60px;
+    }
     .cart_center_desc{
         display: none;
     }
@@ -84,6 +90,12 @@
     }
 }
 @media screen and (max-width: 300px){
+    .error{
+        height: 15vh;
+    }
+    .error_p{
+        font-size: 45px;
+    }
     .cart_center_desc{
         display: none;
     }

@@ -18,7 +18,7 @@ const Header = () => {
                     <Link className={s.link} to='/korthina'>Корзина</Link>
                 </div>
                 <div className={s.header_menu}>
-                  <Menu >
+                  <Menu>
                     <MenuButton>
                       Menu
                     </MenuButton>

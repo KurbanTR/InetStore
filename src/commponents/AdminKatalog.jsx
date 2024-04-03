@@ -29,14 +29,17 @@ const AdminKatalog = () => {
       setIsModalOpen(false);
     };
 
-    const onHandleClick = () => {
+    const onHandleClick = (e) => {
+      e.preventDefault()
       if(title == ''|| price == ''||description == ''|| image == ''){
           setError(true)
           setOk('')
       } else { 
               setError(false)
-              dispatch(addProduct({title,price,description,image}))
+              const id = Math.floor(Math.random() * 900000) + 100000;
+              dispatch(addProduct({id,title,price,description,image}))
               setOk('o') 
+              console.log(products);
           } 
       } 
   return (
@@ -49,7 +52,7 @@ const AdminKatalog = () => {
                 products?.map(tovar =>
                     <div key={tovar.id} className={s.tovar}>
                       <p className={s.tovar_name}>{tovar.title}</p>
-                      <img src={deletee} onClick={() => dispatch(removeProduct({tovar}))} alt="x" className={s.delete}/>
+                      <img src={deletee} onClick={() => dispatch(removeProduct(tovar))} alt="x" className={s.delete}/>
                     </div>
                 )
             }
@@ -60,7 +63,7 @@ const AdminKatalog = () => {
       </div>
       <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <h2 className={s.modal_title}>Добавление товара</h2>
-        <form className={s.modal_form}>
+        <form onSubmit={e => onHandleClick(e)} className={s.modal_form}>
           <label className={s.modal_label}>Название</label>
           <input value={title} onChange={e => setTitle(e.target.value)} className={s.modal_input}/>
 
@@ -74,7 +77,7 @@ const AdminKatalog = () => {
           <input value={image} onChange={e => setImage(e.target.value)} className={s.modal_input}/>
 
           <p className={s.modal_error}>{error ? 'Заполните все бланки' : false}</p>
-          <button onClick={onHandleClick} className={s.modal_button}>Добавить товар</button>
+          <button onClick={handleCancel} className={s.modal_button}>Добавить товар</button>
         </form>
 
       </Modal>

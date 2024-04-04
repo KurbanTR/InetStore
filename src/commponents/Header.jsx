@@ -16,6 +16,7 @@ const Header = () => {
                 <div className={s.header_link}>
                     <Link className={s.link} to='/'>Товары</Link>
                     <Link className={s.link} to='/korthina'>Корзина</Link>
+                    <Link className={s.link} to='/reg'>Зарегестрироваться</Link>
                 </div>
                 <div className={s.header_menu}>
                   <Menu>
@@ -25,6 +26,7 @@ const Header = () => {
                     <MenuList>
                       <MenuItem><Link to='/'>Товары</Link></MenuItem>
                       <MenuItem><Link to='/korthina'>Корзина</Link> </MenuItem>
+                      <MenuItem><Link className={s.link} to='/reg'>Зарегестрироваться</Link></MenuItem>
                     </MenuList>
                   </Menu>
                 </div>

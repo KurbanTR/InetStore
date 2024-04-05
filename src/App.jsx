@@ -1,7 +1,7 @@
 import './App.css'
 import AdminKatalog from './commponents/AdminKatalog'
 import Profil from './commponents/Authentication/Profil'
-import SignIn from './commponents/Authentication/SignIn'
+import LoginIn from './commponents/Authentication/LoginIn'
 import SignUp from './commponents/Authentication/SignUp'
 import Header from './commponents/Header'
 import Katalog from './commponents/Katalog'
@@ -15,8 +15,8 @@ function App() {
         <Header/>
         <Routes>
           <Route path="/" element={<Katalog/>}/>
-          <Route path='/reg' element={<SignIn/>}/>
-          <Route path='/vhod' element={<SignUp/>}/>
+          <Route path='/reg' element={<SignUp/>}/>
+          <Route path='/vhod' element={<LoginIn/>}/>
           <Route path='/profil' element={<Profil/>}/>
           <Route path="/korthina" element={<Korz/>}/>
           <Route path='/admin' element={<AdminKatalog/>}/>

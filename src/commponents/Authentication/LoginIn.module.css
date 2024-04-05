@@ -52,9 +52,3 @@ input{
     font-weight: 600;
     color: red;
 }
-.ok{
-    font-size: 20px;
-    color: green;
-    margin-top: 20px;
-    cursor: pointer;
-}

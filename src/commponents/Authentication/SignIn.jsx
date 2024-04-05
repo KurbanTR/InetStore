@@ -22,7 +22,7 @@ const SignIn = () => {
       <input value={email} onChange={(e)=>setEmail(e.target.value)} type="email"  placeholder="email"/>
       <input value={password} onChange={(e)=>setPassword(e.target.value)} type="email" placeholder="password"/>
       <button onClick={onHandleClick}>Зарегестрироваться</button>
-      <button><Link to='/vhod'>Войти</Link></button>
+      <Link to='/vhod'>если есть аккаунт, то войти</Link>
     </div>
   )
 }

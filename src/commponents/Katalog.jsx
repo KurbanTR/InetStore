@@ -2,7 +2,8 @@ import s from '../style/Katalog.module.css'
 import { useDispatch, useSelector} from 'react-redux'
 import { addBusket } from './store/todoReducer';
 const Katalog = () => {
-  const {products} = useSelector((state) => state.todos)
+  const {products} = useSelector(state => state.todos)
+  const {token} = useSelector(state => state.user)
   const dispatch = useDispatch()
   return (
     <div>
@@ -14,7 +15,7 @@ const Katalog = () => {
                         <img src={tovar.image} className={s.image} alt="IMAGE"/>
                         <div className={s.card_name}>
                           <h3 className={s.card_title}>{tovar.title}</h3>
-                          <button onClick={() => dispatch(addBusket(tovar))} className={s.button}>В корзину</button>
+                          {token && <button onClick={() => dispatch(addBusket(tovar))} className={s.button}>В корзину</button>}
                         </div>
                     </div>)
             }

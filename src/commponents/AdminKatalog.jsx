@@ -14,7 +14,6 @@ const AdminKatalog = () => {
     const [image, setImage] = useState('')
 
     const [error, setError] = useState('')
-    const [ok, setOk] = useState('')
 
     const {products} = useSelector((state) => state.todos)
     const dispatch = useDispatch()
@@ -33,12 +32,10 @@ const AdminKatalog = () => {
       e.preventDefault()
       if(title == ''|| price == ''||description == ''|| image == ''){
           setError(true)
-          setOk('')
       } else { 
               setError(false)
               const id = Math.floor(Math.random() * 900000) + 100000;
               dispatch(addProduct({id,title,price,description,image}))
-              setOk('o') 
               handleCancel()
               console.log(products)
           } 
@@ -62,7 +59,7 @@ const AdminKatalog = () => {
             <button onClick={showModal} className={s.button}>Добавить товар</button>
         </div>
       </div>
-      <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      <Modal footer={null} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <h2 className={s.modal_title}>Добавление товара</h2>
         <form onSubmit={e => onHandleClick(e)} className={s.modal_form}>
           <label className={s.modal_label}>Название</label>

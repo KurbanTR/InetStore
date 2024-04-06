@@ -51,7 +51,7 @@ const Profil = () => {
       </div>
       <button onClick={showModal} className={s.button}>Изменить данные</button>
 
-      <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      <Modal footer={null} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <h2 className={s.modal_title}>Изменить данные</h2>
         <form onSubmit={e => onHandleClick(e)} className={s.modal_form}>
           <label className={s.modal_label}>Имя</label>

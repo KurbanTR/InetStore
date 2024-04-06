@@ -39,7 +39,8 @@ const AdminKatalog = () => {
               const id = Math.floor(Math.random() * 900000) + 100000;
               dispatch(addProduct({id,title,price,description,image}))
               setOk('o') 
-              console.log(products);
+              handleCancel()
+              console.log(products)
           } 
       } 
   return (
@@ -77,7 +78,7 @@ const AdminKatalog = () => {
           <input value={image} onChange={e => setImage(e.target.value)} className={s.modal_input}/>
 
           <p className={s.modal_error}>{error ? 'Заполните все бланки' : false}</p>
-          <button onClick={handleCancel} className={s.modal_button}>Добавить товар</button>
+          <button className={s.modal_button}>Добавить товар</button>
         </form>
 
       </Modal>

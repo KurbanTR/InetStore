@@ -9,31 +9,45 @@ export const createAccount = createAsyncThunk(
         console.log(userCredentials.user);
         dispatch(setToken(userCredentials.user.accessToken))
         dispatch(setEmail(userCredentials.user.email))
+        localStorage.setItem('userToken', userCredentials.user.accessToken)
+        localStorage.setItem('userToken', userCredentials.user.email)
     }
 )
 export const loginInAccount = createAsyncThunk(
     'user/loginInAccount',
-    async ({email,password},{dispatch}) => {
+    async ({email,password,nav},{dispatch}) => {
+        try {
         const userCredentials = await signInWithEmailAndPassword(auth, email, password)
         console.log(userCredentials.user);
         dispatch(setToken(userCredentials.user.accessToken))
         dispatch(setEmail(userCredentials.user.email))
+        localStorage.setItem('token', userCredentials.user.accessToken)
+        localStorage.setItem('email', userCredentials.user.email)
+        nav('/profil')
+
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 )
 export const signOutFromAccount = createAsyncThunk(
     'user/signOutFromAccount',
-    async (_, {dispatch}) => {
+    async (auth, {dispatch}) => {
         await signOut(auth)
         dispatch(setToken(null))
         dispatch(setEmail(null))
+        localStorage.removeItem('token')
+        localStorage.removeItem('email')
     }
 )
 
 const authSlise = createSlice({
     name: 'user',
     initialState: {
-        email: null,
-        token: null,
+        email: localStorage.getItem('email'),
+        name: 'Нет имени',
+        token: localStorage.getItem('token'),
     },
     reducers: {
         setToken(state, actions) {

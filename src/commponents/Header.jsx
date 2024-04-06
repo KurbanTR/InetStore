@@ -22,22 +22,25 @@ const Header = () => {
         <div className={s.header}>
             <div className={s.header_block}>
                 <div className={s.header_icon}>IT-Academy</div>
-                <div className={s.header_link}>
+                <div style={{display: 'flex', gap: '1em'}}>
+                  <div className={s.header_link}>
                     <Link className={s.link} to='/'>Товары</Link>
                     {token && <Link className={s.link} to='/korthina'>Корзина</Link>}
-                    {!token ? <Link className={s.link} to='/vhod'>Войти</Link> : <Link to='/' onClick={onHandleClick} className={s.link}>Выйти</Link>}
-                </div>
-                <div className={s.header_menu}>
-                  <Menu>
-                    <MenuButton>
-                      Menu
-                    </MenuButton>
-                    <MenuList>
-                      <MenuItem><Link to='/'>Товары</Link></MenuItem>
-                      <MenuItem><Link to='/korthina'>Корзина</Link> </MenuItem>
-                      <MenuItem><Link to='/vhod'>Войти</Link></MenuItem>
-                    </MenuList>
-                  </Menu>
+                    {!token ? <Link className={s.link_vhod} to='/vhod'>Войти</Link> : <Link to='/' onClick={onHandleClick} className={s.link_out}>Выйти</Link>}
+                  </div>
+                  <div className={s.header_menu}>
+                    <Menu>
+                      <MenuButton>
+                        Menu
+                      </MenuButton>
+                      <MenuList>
+                        <MenuItem><Link to='/'>Товары</Link></MenuItem>
+                        <MenuItem><Link to='/korthina'>Корзина</Link> </MenuItem>
+                        <MenuItem><Link to='/vhod'>Войти</Link></MenuItem>
+                      </MenuList>
+                    </Menu>
+                    </div>
+                  <Link to={token ? '/profil' : 'vhod'}><img src="../public/image 9.png" alt="" /></Link>
                 </div>
             </div>
         </div>

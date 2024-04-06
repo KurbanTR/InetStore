@@ -6,12 +6,13 @@ const Katalog = () => {
   const {token} = useSelector(state => state.user)
   const dispatch = useDispatch()
   return (
-    <div>
+    <div className='animated'>
       <p className={s.name}>Каталог товаров</p>
         <div className={s.card}>
             {
                 products?.map(tovar => 
                     <div key={tovar.id} className={s.card_tovar}>
+                        <p/>
                         <img src={tovar.image} className={s.image} alt="IMAGE"/>
                         <div className={s.card_name}>
                           <h3 className={s.card_title}>{tovar.title}</h3>

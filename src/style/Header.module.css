@@ -13,9 +13,10 @@
     width: 90%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .header_icon{
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 600;
 }
 .header_link{
@@ -27,6 +28,22 @@
     font-size: 21px;
     text-decoration: none;
     color: black;
+}
+.link_vhod{
+    font-size: 21px;
+    text-decoration: none;
+    color: white;
+    background: #59EB70;
+    padding: 5px 20px;
+    border-radius: 8px;
+}
+.link_out{
+    font-size: 21px;
+    text-decoration: none;
+    color: white;
+    background: #F44F4F;
+    padding: 5px 20px;
+    border-radius: 8px;
 }
 .header_menu{
     display: none;
@@ -41,5 +58,8 @@
     }
     .header_menu{
         display: block;
+        display: flex;
+        align-items: center;
+        gap: 1em;
     }
 }

@@ -58,3 +58,21 @@ input{
     margin-top: 20px;
     cursor: pointer;
 }
+@media screen and (max-width: 900px) and (min-width: 521px){
+    .block{
+        padding: 1em 2em;
+        width: 80%;
+    }
+    .block_text{
+        font-size: 25px;
+    }
+}
+@media screen and (max-width: 520px) {
+    .block{
+        width: 90%;
+        padding: 1em;
+    }
+    .block_text{
+        font-size: 25px;
+    }
+}

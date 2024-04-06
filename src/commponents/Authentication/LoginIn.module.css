@@ -52,3 +52,24 @@ input{
     font-weight: 600;
     color: red;
 }
+.text{
+    text-align: center;
+}
+@media screen and (max-width: 900px) and (min-width: 521px){
+    .block{
+        padding: 1em 2em;
+        width: 80%;
+    }
+    .block_text{
+        font-size: 25px;
+    }
+}
+@media screen and (max-width: 520px) {
+    .block{
+        width: 90%;
+        padding: 1em;
+    }
+    .block_text{
+        font-size: 25px;
+    }
+}

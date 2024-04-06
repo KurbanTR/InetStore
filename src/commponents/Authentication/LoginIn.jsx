@@ -16,10 +16,9 @@ const LoginIn = () => {
     if(email == ''|| password == ''){
         setError(true)
     } else {
-        const user = {email, password}
+        const user = {email, password,nav}
         dispatch(loginInAccount(user))
         setError(false)
-        token && nav('/profil')
     }
   }
 
@@ -39,7 +38,7 @@ const LoginIn = () => {
   </div>
   <Link onClick={onHandleClick} className={s.block_button}>Войти</Link>
   <p className={s.error}>{error ? 'Заполните все бланки' : false}</p>
-  <Link to={'/reg'}>если нет аккаунта, то зарегистрироваться</Link>
+  <Link className={s.text} to={'/reg'}>если нет аккаунта, то зарегистрироваться</Link>
 </div>
 </div>
   )

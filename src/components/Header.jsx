@@ -39,7 +39,7 @@ const Header = () => {
                       </MenuList>
                     </Menu>
                     </div>
-                  <Link to={token ? '/profil' : 'vhod'}><img src="../public/image 9.png" alt="" /></Link>
+                  <Link to={token ? '/profil' : 'vhod'}><img src="../public/image 9.png" alt="profil" /></Link>
                 </div>
             </div>
         </div>

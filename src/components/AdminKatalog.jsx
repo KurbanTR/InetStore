@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux"
 import deletee from '../img/delete.png'
 import { Modal } from "antd";
 import { useState } from 'react';
-import { addProduct, removeProduct } from './store/todoReducer';
+import { addProduct } from './store/todoReducer';
 
 const AdminKatalog = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen2, setIsModalOpen2] = useState(false);
 
     const [title, setTitle] = useState('')
     const [price, setPrice] = useState('')
@@ -28,6 +29,16 @@ const AdminKatalog = () => {
       setIsModalOpen(false);
     };
 
+    const showModal2 = () => {
+      setIsModalOpen2(true);
+    };
+    const handleOk2 = () => {
+      setIsModalOpen2(false);
+    };
+    const handleCancel2 = () => {
+      setIsModalOpen2(false);
+    };
+
     const onHandleClick = (e) => {
       e.preventDefault()
       if(title == ''|| price == ''||description == ''|| image == ''){
@@ -40,6 +51,11 @@ const AdminKatalog = () => {
               console.log(products)
           } 
       } 
+      const onHandleClick2 = (e) => {
+        e.preventDefault()
+        handleCancel2()
+        console.log(products)
+      } 
   return (
     <>
       <p className={s.name}>Вы вошли как Админ</p>
@@ -50,7 +66,7 @@ const AdminKatalog = () => {
                 products?.map(tovar =>
                     <div key={tovar.id} className={s.tovar}>
                       <p className={s.tovar_name}>{tovar.title}</p>
-                      <img src={deletee} onClick={() => dispatch(removeProduct(tovar))} alt="x" className={s.delete}/>
+                      <img src={deletee} onClick={showModal2} alt="x" className={s.delete}/>
                     </div>
                 )
             }
@@ -79,8 +95,14 @@ const AdminKatalog = () => {
         </form>
 
       </Modal>
+     
+      <Modal footer={null} open={isModalOpen2} onOk={handleOk2} onCancel={handleCancel2}>
+        <h2 className={s.modal_title}>Вы точно хотите продать товар?</h2>
+        <form onSubmit={e => onHandleClick2(e)} className={s.modal_form}>
+          <button className={s.modal_button}>Удалить товар</button>
+        </form>
+      </Modal>
     </>
   )
 }
-
 export default AdminKatalog

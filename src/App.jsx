@@ -1,14 +1,21 @@
 import './App.css'
-import AdminKatalog from './commponents/AdminKatalog'
-import Profil from './commponents/Authentication/Profil'
-import LoginIn from './commponents/Authentication/LoginIn'
-import SignUp from './commponents/Authentication/SignUp'
-import Header from './commponents/Header'
-import Katalog from './commponents/Katalog'
-import Korz from './commponents/Korz'
+import AdminKatalog from './components/AdminKatalog'
+import Profil from './components/Authentication/Profil'
+import LoginIn from './components/Authentication/LoginIn'
+import SignUp from './components/Authentication/SignUp'
+import Header from './components/Header'
+import Katalog from './components/Katalog'
+import Korz from './components/Korz'
 import { Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
+import {useDispatch} from 'react-redux'
+import { ProductData } from './components/store/todoReducer'
 
 function App() {
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(ProductData())
+  }, [])
 
   return (
     <>

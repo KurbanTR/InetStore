@@ -7,14 +7,15 @@ import {
 import s from '../style/Header.module.css'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { setToken, signOutFromAccount } from './store/authReducer'
+import { removeProfile, signOutFromAccount } from './store/authReducer'
 
 const Header = () => {
   const {token} = useSelector(state => state.user)
   const dispatch = useDispatch()
+
   const onHandleClick = () => {
     dispatch(signOutFromAccount())
-    dispatch(setToken(null))
+    dispatch(removeProfile())
   }
   
   return (
@@ -30,13 +31,11 @@ const Header = () => {
                   </div>
                   <div className={s.header_menu}>
                     <Menu>
-                      <MenuButton>
-                        Menu
-                      </MenuButton>
+                      <MenuButton>Menu</MenuButton>
                       <MenuList>
                         <MenuItem><Link to='/'>Товары</Link></MenuItem>
-                        <MenuItem><Link to='/korthina'>Корзина</Link> </MenuItem>
-                        <MenuItem><Link to='/vhod'>Войти</Link></MenuItem>
+                        {token && <MenuItem><Link to='/korthina'>Корзина</Link></MenuItem>}
+                        {!token ? <MenuItem><Link to='/vhod'>Войти</Link></MenuItem> : <MenuItem><Link to='/' onClick={onHandleClick}>Выйти</Link></MenuItem>}
                       </MenuList>
                     </Menu>
                     </div>

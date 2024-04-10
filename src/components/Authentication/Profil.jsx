@@ -1,19 +1,22 @@
 import { useState } from "react";
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import s from './Profil.module.css'
 import { Modal } from "antd";
-// import ava from '../../assets/image 9.png'
+import { updateProfileAccount } from "../store/authReducer";
 
 const Profil = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const {email} = useSelector(state => state.user)
     const {name} = useSelector(state => state.user)
+    const dispatch = useDispatch()
 
     const [nameInput, setName] = useState('')
     const [emailInput, setEmail] = useState('')
 
     const [error, setError] = useState('')
+
+    // const dispatch = useDispatch()
 
     const showModal = () => {
       setIsModalOpen(true);
@@ -28,13 +31,13 @@ const Profil = () => {
     const onHandleClick = (e) => {
       e.preventDefault()
       if(!nameInput || !emailInput){
-          setError(true)
+        setError(true)
       } else { 
-              setError(false)
-              // dispatch()
-              handleCancel()
-          } 
+        setError(false)
+        handleCancel()
+        dispatch(updateProfileAccount({displayName: nameInput}))
       } 
+    } 
   return (
     <div className={s.center} style={{position: 'relative', top: '100px'}}>
       <p className={s.title}>Личный кабинет</p>
@@ -57,7 +60,7 @@ const Profil = () => {
           <label className={s.modal_label}>Имя</label>
           <input value={nameInput} onChange={e => setName(e.target.value)} className={s.modal_input}/>
 
-          <label className={s.modal_label}>Фото профиля (URL)</label>
+          <label className={s.modal_label}>Почта</label>
           <input value={emailInput} onChange={e => setEmail(e.target.value)} className={s.modal_input}/>
 
           <p className={s.modal_error}>{error ? 'Заполните все бланки' : false}</p>

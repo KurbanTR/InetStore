@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { loginInAccount } from "../store/authReducer"
 import { Link, useNavigate } from "react-router-dom"
 import s from './LoginIn.module.css'
@@ -8,7 +8,6 @@ const LoginIn = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(false)
-  const {token} = useSelector(state => state.user)
   const nav = useNavigate()
   const dispatch = useDispatch()
 
@@ -16,8 +15,7 @@ const LoginIn = () => {
     if(email == ''|| password == ''){
         setError(true)
     } else {
-        const user = {email, password,nav}
-        dispatch(loginInAccount(user))
+        dispatch(loginInAccount({email, password,nav}))
         setError(false)
     }
   }
@@ -28,7 +26,7 @@ const LoginIn = () => {
   <h1 className={s.block_text}>Войти в аккаунт</h1>
   <div className={s.block_form}>
       <div className={s.block_form_input}>
-          <p>Email</p>
+          <p>Почта</p>
           <input value={email} onChange={e=>setEmail(e.target.value)} type="email"  placeholder="Введите почту..."/>
       </div>
       <div className={s.block_form_input}>

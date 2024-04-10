@@ -49,6 +49,8 @@
     border: none;
     font-size: 21px;
     cursor: pointer;
+    background: white;
+    font-weight: 600;
 }
 .delete{
     cursor: pointer;

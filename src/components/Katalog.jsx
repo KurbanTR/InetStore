@@ -1,6 +1,6 @@
 import s from '../style/Katalog.module.css'
 import { useDispatch, useSelector} from 'react-redux'
-import { addBusket } from './store/todoReducer';
+import { addBusket } from '../store/todoReducer';
 const Katalog = () => {
   const {products} = useSelector(state => state.todos)
   const {token} = useSelector(state => state.user)

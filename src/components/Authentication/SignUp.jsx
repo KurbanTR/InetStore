@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { createAccount } from "../store/authReducer"
+import { createAccount } from "../../store/authReducer"
 import { useDispatch } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 import s from './SignUp.module.css'

@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { db } from "../../firebaseConfig";
-import { collection, deleteDoc, doc, getDoc, getDocs } from "firebase/firestore";
+import { db } from "../firebaseConfig";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
 
 export const productsCollectionRef = collection(db, 'product')
+
 export const ProductData = createAsyncThunk(
     'products/ProductData',
     async(_,{dispatch}) => {
@@ -25,10 +26,25 @@ export const getProdustData = createAsyncThunk(
     }
 )
 
-export const DeleteDefineDoc = createAsyncThunk(
-    'products/DeleteDefineDoc',
+export const setProductData = createAsyncThunk(
+    'products/setProductData',
+    async({title, description, price, image}) => {
+        await addDoc(productsCollectionRef, {title, description, price, image})
+    }
+)
+
+export const updateProductData = createAsyncThunk(
+    'products/updateProductData',
+    async({title, description, prise, image, id}) => {
+        const productsDocRef = doc(productsCollectionRef, id)
+        await updateDoc(productsDocRef, {title, description, prise, image})
+    }
+)
+
+export const deleteDefineDoc = createAsyncThunk(
+    'products/deleteDefineDoc',
     async({id}) => {
-        const defineProductRef = doc(productsCollectionRef,id)
+        const defineProductRef = doc(productsCollectionRef, id)
         await deleteDoc(defineProductRef)
     }
 )
@@ -42,10 +58,7 @@ const todoSlice = createSlice({
     },
     reducers: {
         addProduct(state, action) {
-            state.products = [...state.products, action.payload]            
-        },
-        removeProduct(state, action) {
-            state.products = state.products.filter(product => product.id !== action.payload.id)
+            setProductData(action.payload)          
         },
         addBusket(state, action) {
             state.buscket = [...state.buscket, action.payload]

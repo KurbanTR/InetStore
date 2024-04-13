@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { loginInAccount } from "../store/authReducer"
+import { loginInAccount } from "../../store/authReducer"
 import { Link, useNavigate } from "react-router-dom"
 import s from './LoginIn.module.css'
 

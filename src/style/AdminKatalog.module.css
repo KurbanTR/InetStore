@@ -101,3 +101,25 @@
     color: red;
     padding-top: 70px;
 }
+
+.modal_deltitle{
+    text-align: center;
+    font-size: 25px;
+    font-weight: 700;
+}
+.modal_delform{
+    display: flex;
+    justify-content: center;
+}
+.modal_delete{
+    width: 80%;
+    margin-bottom: 10px;
+    padding: 15px 0;
+    border-radius: 11px;
+    border: none;
+    font-size: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #ff0000;    
+    color: white;
+}

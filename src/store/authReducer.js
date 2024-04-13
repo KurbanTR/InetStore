@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
-import { auth } from "../../firebaseConfig";
+import { auth } from "../firebaseConfig";
 
 export const updateProfileAccount = createAsyncThunk(
     'user/updateProfileEmail',
@@ -30,11 +30,12 @@ export const loginInAccount = createAsyncThunk(
     async ({email,password,nav},{dispatch}) => {
         try {
         const userCredentials = await signInWithEmailAndPassword(auth, email, password)
-        console.log(userCredentials.user);
         dispatch(setToken(userCredentials.user.accessToken))
         dispatch(setEmail(userCredentials.user.email))
         dispatch(setName(userCredentials.user.displayName))
         nav('/profil')
+        userCredentials.user.email == 'kurban@gmail.com' && localStorage.setItem('admin', true)
+        console.log(userCredentials.user);
 
         } catch (error) {
             console.log(error);
@@ -54,6 +55,7 @@ const authSlise = createSlice({
         email: localStorage.getItem('email'),
         name: localStorage.getItem('name'),
         token: localStorage.getItem('token'),
+        isAdmin: localStorage.getItem('admin')
     },
     reducers: {
         setToken(state, actions) {
@@ -75,9 +77,11 @@ const authSlise = createSlice({
             state.name = null
             state.email = null
             state.token = null
+            state.isAdmin = null
             localStorage.removeItem('name')
             localStorage.removeItem('email')
             localStorage.removeItem('token')
+            localStorage.removeItem('admin')
         }
     },
 })

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import s from './Profil.module.css'
 import { Modal } from "antd";
-import { updateProfileAccount } from "../store/authReducer";
+import { updateProfileAccount } from "../../store/authReducer";
 
 const Profil = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);

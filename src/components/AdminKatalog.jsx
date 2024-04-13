@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from "react-redux"
 import deletee from '../img/delete.png'
 import { Modal } from "antd";
 import { useState } from 'react';
-import { addProduct } from './store/todoReducer';
+import { deleteDefineDoc, setProductData } from '../store/todoReducer';
 
 const AdminKatalog = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isModalOpen2, setIsModalOpen2] = useState(false);
 
     const [title, setTitle] = useState('')
     const [price, setPrice] = useState('')
@@ -29,33 +28,22 @@ const AdminKatalog = () => {
       setIsModalOpen(false);
     };
 
-    const showModal2 = () => {
-      setIsModalOpen2(true);
-    };
-    const handleOk2 = () => {
-      setIsModalOpen2(false);
-    };
-    const handleCancel2 = () => {
-      setIsModalOpen2(false);
-    };
-
-    const onHandleClick = (e) => {
+    const onAddClick = (e) => {
       e.preventDefault()
       if(title == ''|| price == ''||description == ''|| image == ''){
-          setError(true)
+        setError(true)
       } else { 
-              setError(false)
-              const id = Math.floor(Math.random() * 900000) + 100000;
-              dispatch(addProduct({id,title,price,description,image}))
-              handleCancel()
-              console.log(products)
-          } 
-      } 
-      const onHandleClick2 = (e) => {
-        e.preventDefault()
-        handleCancel2()
+        setError(false)
+        dispatch(setProductData({title,price,description,image}))
+        handleCancel()
         console.log(products)
       } 
+    } 
+
+    const onDeleteClick = (id) =>{
+      dispatch(deleteDefineDoc({id}))
+      console.log(id);
+    }
   return (
     <>
       <p className={s.name}>Вы вошли как Админ</p>
@@ -66,7 +54,7 @@ const AdminKatalog = () => {
                 products?.map(tovar =>
                     <div key={tovar.id} className={s.tovar}>
                       <p className={s.tovar_name}>{tovar.title}</p>
-                      <img src={deletee} onClick={showModal2} alt="x" className={s.delete}/>
+                      <img src={deletee} onClick={()=>onDeleteClick(tovar.id)} alt="x" className={s.delete}/>
                     </div>
                 )
             }
@@ -77,7 +65,7 @@ const AdminKatalog = () => {
       </div>
       <Modal footer={null} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <h2 className={s.modal_title}>Добавление товара</h2>
-        <form onSubmit={e => onHandleClick(e)} className={s.modal_form}>
+        <form onSubmit={e => onAddClick(e)} className={s.modal_form}>
           <label className={s.modal_label}>Название</label>
           <input value={title} onChange={e => setTitle(e.target.value)} className={s.modal_input}/>
 
@@ -94,13 +82,6 @@ const AdminKatalog = () => {
           <button className={s.modal_button}>Добавить товар</button>
         </form>
 
-      </Modal>
-     
-      <Modal footer={null} open={isModalOpen2} onOk={handleOk2} onCancel={handleCancel2}>
-        <h2 className={s.modal_title}>Вы точно хотите продать товар?</h2>
-        <form onSubmit={e => onHandleClick2(e)} className={s.modal_form}>
-          <button className={s.modal_button}>Удалить товар</button>
-        </form>
       </Modal>
     </>
   )

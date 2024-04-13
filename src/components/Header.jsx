@@ -7,7 +7,7 @@ import {
 import s from '../style/Header.module.css'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { removeProfile, signOutFromAccount } from './store/authReducer'
+import { removeProfile, signOutFromAccount } from '../store/authReducer'
 
 const Header = () => {
   const {token} = useSelector(state => state.user)
